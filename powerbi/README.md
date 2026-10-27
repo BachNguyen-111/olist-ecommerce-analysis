@@ -1,6 +1,6 @@
 # Power BI Dashboard: Model, Measures and QA
 
-File: [`Olist main.pbix`](Olist%20main.pbix). It imports from SQL Server (`localhost\SQLEXPRESS01`, database `Olist_Retail_DB`), and all 7 source tables come from the database, so one refresh updates the whole report.
+File: `Olist main.pbix`, [download it from Releases](https://github.com/BachNguyen-111/olist-ecommerce-analysis/releases/latest). It imports from SQL Server (`localhost\SQLEXPRESS01`, database `Olist_Retail_DB`), and all 7 source tables come from the database, so one refresh updates the whole report.
 
 ## 1. Pages
 
