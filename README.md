@@ -53,7 +53,7 @@ I built this project with Claude as my assistant. I loaded the data, ran the SQL
 | [`docs/`](docs/) | [Project charter](docs/01_project_charter.md) (questions and KPI definitions) · [Data dictionary](docs/02_data_dictionary.md) and [ERD](docs/02_erd.png) · [Issue log](docs/04_issue_log.md) · [Executive summary](docs/07_executive_summary.md) |
 | [`sql/`](sql/) | [Create tables](sql/03_create_tables.sql) · [Keys](sql/03_foreign_keys.sql) · [Data quality checks](sql/04_data_quality_checks.sql) · [14 analysis queries](sql/05_analysis.sql) · [Results](sql/05_results.md) |
 | [`presentation/`](presentation/) | [Findings deck (PDF)](presentation/07_findings_deck.pdf): 9 slides for the Head of Operations |
-| [`powerbi/`](powerbi/) | The `.pbix` file, screenshots, and the [model, measures and QA](powerbi/README.md) |
+| [`powerbi/`](powerbi/) | Screenshots and the [model, measures and QA](powerbi/README.md). The `.pbix` file is under [Releases](https://github.com/BachNguyen-111/olist-ecommerce-analysis/releases/latest) (too big for the repo page) |
 | [`images/`](images/) | Charts used in the results |
 | [`data/`](data/) | Where to download the CSVs |
 
@@ -62,6 +62,6 @@ I built this project with Claude as my assistant. I loaded the data, ran the SQL
 1. Download the CSVs from [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
 2. In SQL Server, run `sql/03_create_tables.sql` (set your CSV folder path first), then `sql/03_foreign_keys.sql`.
 3. Run `sql/04_data_quality_checks.sql` and `sql/05_analysis.sql`. Each query lists its expected result.
-4. Open `powerbi/Olist main.pbix` and point the data source at your SQL Server.
+4. Download `Olist main.pbix` from [Releases](https://github.com/BachNguyen-111/olist-ecommerce-analysis/releases/latest), open it, and point the data source at your SQL Server.
 
 *Limits: this shows correlation, not causation. The data has no carrier names, so carriers can't be compared yet.*
