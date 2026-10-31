@@ -1,0 +1,10 @@
+# Office temporary lock files
+~$*
+
+# OS files
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Power BI file is published under Releases (too big for the repo)
+*.pbix

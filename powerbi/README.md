@@ -6,7 +6,7 @@ File: `Olist main.pbix`, [download it from Releases](https://github.com/BachNguy
 
 ### Overview: how big is the business, and is it growing?
 
-![Overview page](screenshots_overview_pbi.png)
+![Overview page](screenshot_overview.png)
 
 | Visual | What it shows |
 | --- | --- |
@@ -17,7 +17,7 @@ File: `Olist main.pbix`, [download it from Releases](https://github.com/BachNguy
 
 ### Delivery: why are orders late, and what does it cost?
 
-![Delivery page](screenshot_delivery_pbi.png)
+![Delivery page](screenshot_delivery.png)
 
 | Visual | What it shows |
 | --- | --- |
@@ -36,7 +36,7 @@ Both pages have a State dropdown (with an "All states" option), Year buttons and
 
 ## 2. Data model
 
-![Power BI model view](Screenshot_star_scheema_pbi.png)
+![Power BI model view](screenshot_star_schema.png)
 
 This is a star schema with `orders` at the centre. `order_items` and `order_reviews` are the detail tables; customers, products, sellers and dates describe them.
 

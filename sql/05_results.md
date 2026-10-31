@@ -20,7 +20,7 @@ Results of [`05_analysis.sql`](05_analysis.sql) on the full dataset, each with a
 
 ## Q1 & Q2: Revenue and trend (Queries 3, 7)
 
-![Monthly revenue and on-time rate](../images/monthly_revenue%20%26%20on_time_delivery_%25.png)
+![Monthly revenue and on-time rate](../docs/images/monthly_revenue_on_time_delivery.png)
 
 | Period | Monthly revenue |
 | --- | --- |
@@ -33,7 +33,7 @@ Results of [`05_analysis.sql`](05_analysis.sql) on the full dataset, each with a
 
 ## Q3: Delivery by state (Queries 4, 9)
 
-![On-time rate by state](../images/ontime_by_state.png)
+![On-time rate by state](../docs/images/ontime_by_state.png)
 
 | State | Delivered orders | Avg delivery days | On-time % | Share of orders | Share of late orders |
 | --- | --- | --- | --- | --- | --- |
@@ -52,7 +52,7 @@ The dashboard's state chart uses a lower cut-off (100+ orders) so every state a 
 
 ## Q4: Late delivery vs review score (Queries 8, 10, 11)
 
-![Review score by lateness](../images/reviews_by_lateness.png)
+![Review score by lateness](../docs/images/reviews_by_lateness.png)
 
 | Delivery outcome | Orders | Avg review | Orders rated 2 stars or less |
 | --- | --- | --- | --- |
@@ -72,7 +72,7 @@ The chart splits the 8+ bucket into 8–14 days (1.68) and 15+ days (1.72). It a
 
 ## Q7: Why orders are late (Queries 12, 13)
 
-![Delay by stage](../images/delay_by_stage.png)
+![Delay by stage](../docs/images/delay_by_stage.png)
 
 **Where the time goes**
 
@@ -103,7 +103,7 @@ The chart splits the 8+ bucket into 8–14 days (1.68) and 15+ days (1.72). It a
 
 ## Q6: Top categories (Query 6)
 
-![Top categories](../images/top_categories.png)
+![Top categories](../docs/images/top_categories.png)
 
 | Rank | Category | Orders | Product revenue | Total revenue (incl. freight) |
 | --- | --- | --- | --- | --- |

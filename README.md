@@ -4,9 +4,9 @@
 
 SQL Server (T-SQL) · Power BI (DAX) · Built with Claude as an AI assistant
 
-![Delivery page of the Power BI dashboard](powerbi/screenshot_delivery_pbi.png)
-
 *Real public data ([Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)); the client brief is simulated.*
+
+---
 
 ## The question
 
@@ -19,13 +19,33 @@ The Head of Operations asks: **how does delivery performance affect customer sat
 3. **The delay is with the carrier, on long routes.** Late orders spend 28 days with the carrier vs 8 for on-time ones. Orders shipped from another state are late almost twice as often (8.0% vs 4.5%).
 4. **Promises ignore the route.** Late orders were promised the same delivery window as on-time ones, and peaks like Black Friday push the late rate as high as 19%.
 
+![Review score by lateness](docs/images/reviews_by_lateness.png)
+
 ## What I recommend
 
 1. Fix delivery in the seven worst states, starting with Rio de Janeiro.
 2. Compare carriers on long cross-state routes and move volume to the reliable ones.
 3. Set delivery estimates by route and season, not one window for everyone.
 
-Full findings and all six recommendations: [executive summary](docs/07_executive_summary.md) · [findings deck (PDF)](presentation/07_findings_deck.pdf).
+Full findings and all six recommendations: [executive summary](docs/07_executive_summary.md) · [findings deck (PDF)](presentation/07_findings_deck.pdf) · [all query results with charts](sql/05_results.md)
+
+---
+
+## Dashboard
+
+![Delivery page of the Power BI dashboard](powerbi/screenshot_delivery.png)
+
+Two pages: an [overview](powerbi/screenshot_overview.png) of revenue, orders and reviews, and the delivery page above. The model, the DAX measures, and how I checked the dashboard against SQL are in the [Power BI notes](powerbi/README.md).
+
+---
+
+## Data model
+
+![Entity relationship diagram](docs/02_erd.png)
+
+Eight tables loaded from the Olist CSVs into SQL Server, with primary and foreign keys. Every column is described in the [data dictionary](docs/02_data_dictionary.md). In Power BI, the same tables form a [star schema](powerbi/screenshot_star_schema.png).
+
+---
 
 ## How I used AI
 
@@ -46,22 +66,58 @@ I built this project with Claude as my assistant. I loaded the data, ran the SQL
 - The trade-offs, which are all written up in the [issue log](docs/04_issue_log.md).
 - The final dashboard design.
 
-## What's in this repo
-
-| Folder | What's inside |
-| --- | --- |
-| [`docs/`](docs/) | [Project charter](docs/01_project_charter.md) (questions and KPI definitions) · [Data dictionary](docs/02_data_dictionary.md) and [ERD](docs/02_erd.png) · [Issue log](docs/04_issue_log.md) · [Executive summary](docs/07_executive_summary.md) |
-| [`sql/`](sql/) | [Create tables](sql/03_create_tables.sql) · [Keys](sql/03_foreign_keys.sql) · [Data quality checks](sql/04_data_quality_checks.sql) · [14 analysis queries](sql/05_analysis.sql) · [Results](sql/05_results.md) |
-| [`presentation/`](presentation/) | [Findings deck (PDF)](presentation/07_findings_deck.pdf): 9 slides for the Head of Operations |
-| [`powerbi/`](powerbi/) | Screenshots and the [model, measures and QA](powerbi/README.md). The `.pbix` file is under [Releases](https://github.com/BachNguyen-111/olist-ecommerce-analysis/releases/latest) (too big for the repo page) |
-| [`images/`](images/) | Charts used in the results |
-| [`data/`](data/) | Where to download the CSVs |
+---
 
 ## How to run it
 
-1. Download the CSVs from [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
+**You need:** SQL Server (Express works), SQL Server Management Studio (SSMS), and Power BI Desktop.
+
+1. Download the CSVs from [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce). The [data notes](data/README.md) list which files are used.
 2. In SQL Server, run `sql/03_create_tables.sql` (set your CSV folder path first), then `sql/03_foreign_keys.sql`.
 3. Run `sql/04_data_quality_checks.sql` and `sql/05_analysis.sql`. Each query lists its expected result.
 4. Download `Olist main.pbix` from [Releases](https://github.com/BachNguyen-111/olist-ecommerce-analysis/releases/latest), open it, and point the data source at your SQL Server.
 
-*Limits: this shows correlation, not causation. The data has no carrier names, so carriers can't be compared yet.*
+---
+
+## Repository structure
+
+```
+olist-ecommerce-analysis/
+├── data/
+│   └── README.md                     # where to download the CSVs (not stored here)
+├── docs/
+│   ├── 01_project_charter.md         # business questions, KPI definitions, scope
+│   ├── 02_data_dictionary.md         # every table and column
+│   ├── 02_erd.png                    # entity relationship diagram
+│   ├── 04_issue_log.md               # data issues and the trade-offs I made
+│   ├── 07_executive_summary.md       # findings and recommendations
+│   └── images/                       # charts used in the results
+├── sql/
+│   ├── 03_create_tables.sql          # create tables and load the CSVs
+│   ├── 03_foreign_keys.sql           # primary and foreign keys
+│   ├── 04_data_quality_checks.sql
+│   ├── 05_analysis.sql               # 14 analysis queries
+│   └── 05_results.md                 # results of every query, with charts
+├── powerbi/
+│   ├── README.md                     # model, DAX measures, and QA against SQL
+│   └── screenshot_*.png              # dashboard pages and the star schema
+├── presentation/
+│   ├── README.md                     # slide-by-slide outline
+│   └── 07_findings_deck.pdf          # 9 slides for the Head of Operations
+└── README.md
+```
+
+The number in front of each file is the project step it belongs to, from the charter (01) to the findings (07). The `.pbix` file is under [Releases](https://github.com/BachNguyen-111/olist-ecommerce-analysis/releases/latest) because it's too big for the repo page.
+
+---
+
+## Limits
+
+- This shows correlation, not causation.
+- The data has no carrier names, so carriers can't be compared yet.
+
+---
+
+## About me
+
+I'm a business analytics student who enjoys the practical analytical side of data: figuring out how the numbers fit together and making them reliable enough to make decisions with.
