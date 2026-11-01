@@ -21,6 +21,7 @@ Every problem found while checking the data, how big it is, and what was decided
 | DQ-11 | Item revenue (price + freight) vs payments differ for delivered orders | R$15,419,773.75 vs R$15,422,461.77 (R$2,688.02, 0.02%) | Explained by installment interest and vouchers | Revenue KPI uses items, as defined in the charter |
 | DQ-12 | Dates out of order: 166 orders handed to the carrier before purchase, 23 delivered before reaching the carrier | 189 orders | Doesn't affect purchase-to-delivery time | Keep; likely timestamp entry errors. Revisit if analyzing carrier speed |
 | DQ-13 | 383 items have freight of R$0 | 383 items | None | Keep; free shipping is a valid business case |
+| DQ-14 | The CSV header row (`product_category_name`, `product_category_name_english`) was loaded into `category_translation` as a data row when the table was imported with the Import Flat File wizard. `03_create_tables.sql` skips it with `FIRSTROW = 2`, so it only appears in a database built with the wizard | 1 row (`category_translation` has 74 rows instead of 73) | None for the analysis: no product uses that category. Found later by row-count checks in my data warehouse project | Kept in the warehouse's Bronze layer as-is; removed in Silver |
 
 ## Dashboard reconciliation
 
