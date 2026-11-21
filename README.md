@@ -6,6 +6,12 @@ SQL Server (T-SQL) · Power BI (DAX) · Built with Claude as an AI assistant
 
 *Real public data ([Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)); the client brief is simulated.*
 
+| On-time vs 8+ days late | Share of 1–2 star reviews from late orders | Days with the carrier, late vs on-time |
+|:---:|:---:|:---:|
+| **4.29 vs 1.70 stars** | **32.5%** (late orders are only 6.7% of reviews) | **28 vs 8 days** |
+
+![Review score by lateness](docs/images/reviews_by_lateness.png)
+
 ---
 
 ## The question
@@ -18,8 +24,6 @@ The Head of Operations asks: **how does delivery performance affect customer sat
 2. **It's regional.** Seven states are below 90% on time and get 39% of all late orders. Rio de Janeiro alone gets 23%.
 3. **The delay is with the carrier, on long routes.** Late orders spend 28 days with the carrier vs 8 for on-time ones. Orders shipped from another state are late almost twice as often (8.0% vs 4.5%).
 4. **Promises ignore the route.** Late orders were promised the same delivery window as on-time ones, and peaks like Black Friday push the late rate as high as 19%.
-
-![Review score by lateness](docs/images/reviews_by_lateness.png)
 
 ## What I recommend
 
@@ -49,22 +53,9 @@ Eight tables loaded from the Olist CSVs into SQL Server, with primary and foreig
 
 ## How I used AI
 
-I built this project with Claude as my assistant. I loaded the data, ran the SQL in SQL Server and built the Power BI report myself, and I didn't keep any number until it matched the SQL results.
+I built this project with Claude as an assistant, and the decisions were mine: the business questions, the KPI definitions and scope, the trade-offs in the [issue log](docs/04_issue_log.md), and the dashboard design. I loaded the data, ran every query in SQL Server and built the Power BI report myself. No number stayed in the project until it matched the SQL results.
 
-**What Claude helped with**
-- **Syntax:** writing T-SQL, DAX and Power Query when I knew what I wanted but not how to write it.
-- **Debugging:** I pasted my error messages (for example, a primary key failing on a nullable column, or a Power Query step returning text instead of a table) and we worked out the fix.
-- **DAX measures:** turning my KPI definitions into measures, such as `Share of Late Orders` and the `Route` column.
-- **Reviewing my SQL:** catching mistakes like counting items instead of orders, or counting `customer_id`, which changes on every order, instead of real customers.
-- **Double-checking results:** recalculating every query in Python as a second check. This caught two dashboard bugs before the final version, including one that showed Rio de Janeiro at 12.4% of orders instead of 12.8%.
-- **Feedback:** on chart titles, colors and layout, and on drafts of the docs.
-- **Building this repo:** organizing the folders, writing the READMEs and docs, keeping file links and numbers consistent across them, and exporting the findings deck to PDF.
-- **Findings deck:** turning my findings into a 9-slide presentation for the Head of Operations.
-
-**What I decided**
-- The business questions, KPI definitions and scope.
-- The trade-offs, which are all written up in the [issue log](docs/04_issue_log.md).
-- The final dashboard design.
+Claude helped with T-SQL and DAX syntax, debugging error messages, reviewing my SQL (it caught me counting items instead of orders), and drafting the docs and the findings deck.
 
 ---
 
@@ -104,6 +95,7 @@ olist-ecommerce-analysis/
 ├── presentation/
 │   ├── README.md                     # slide-by-slide outline
 │   └── 07_findings_deck.pdf          # 9 slides for the Head of Operations
+├── LICENSE
 └── README.md
 ```
 
@@ -121,3 +113,7 @@ The number in front of each file is the project step it belongs to, from the cha
 ## About me
 
 I'm a business analytics student who enjoys the practical analytical side of data: figuring out how the numbers fit together and making them reliable enough to make decisions with.
+
+## License
+
+MIT License. See [LICENSE](LICENSE).
